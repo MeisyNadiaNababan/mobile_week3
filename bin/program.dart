@@ -64,3 +64,27 @@ void cekPrima() {
     print("$n bukan bilangan prima");
   }
 }
+
+// 3. Game Tebak Angka (do-while + random)
+void gameTebakAngka() {
+  var random = Random();
+  int angkaRahasia = random.nextInt(10) + 1;
+  int tebakan;
+  int kesempatan = 3;
+
+  print("Tebak angka antara 1 sampai 10! Punya $kesempatan kesempatan.");
+
+  do {
+    stdout.write("Masukkan tebakan: ");
+    tebakan = int.parse(stdin.readLineSync()!);
+    if (tebakan == angkaRahasia) {
+      print("Selamat! Tebakan benar.");
+      return;
+    } else {
+      print("Salah! Coba lagi.");
+      kesempatan--;
+    }
+  } while (kesempatan > 0);
+
+  print("Kesempatan habis. Angka rahasia adalah $angkaRahasia.");
+}
