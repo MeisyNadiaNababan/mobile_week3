@@ -30,7 +30,7 @@ void main() {
   }
 }
 
-// ✅ 1. Faktorial (perulangan for)
+//1. Faktorial (perulangan for)
 void hitungFaktorial() {
   stdout.write("Masukkan angka: ");
   int n = int.parse(stdin.readLineSync()!);
