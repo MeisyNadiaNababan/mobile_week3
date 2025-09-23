@@ -29,3 +29,14 @@ void main() {
     }
   }
 }
+
+// ✅ 1. Faktorial (perulangan for)
+void hitungFaktorial() {
+  stdout.write("Masukkan angka: ");
+  int n = int.parse(stdin.readLineSync()!);
+  int hasil = 1;
+  for (int i = 1; i <= n; i++) {
+    hasil *= i;
+  }
+  print("Faktorial dari $n = $hasil");
+}
