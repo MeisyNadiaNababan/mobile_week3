@@ -1,6 +1,9 @@
 import 'dart:io';
 import 'dart:math';
 
+// List untuk menyimpan riwayat hasil program
+List<String> history = [];
+
 void main() {
   while (true) {
     print("\n=== MENU PROGRAM ===");
@@ -8,6 +11,7 @@ void main() {
     print("2. Cek Bilangan Prima");
     print("3. Game Tebak Angka");
     print("4. Keluar");
+    print("5. Lihat History"); // menu tambahan
     stdout.write("Pilih menu: ");
     String? pilihan = stdin.readLineSync();
 
@@ -24,13 +28,16 @@ void main() {
       case '4':
         print("Terima kasih, program selesai.");
         return;
+      case '5':
+        tampilkanHistory();
+        break;
       default:
         print("Pilihan tidak valid, coba lagi.");
     }
   }
 }
 
-//1. Faktorial(perulangan for)
+// 1. Faktorial (for)
 void hitungFaktorial() {
   stdout.write("Masukkan angka: ");
   int n = int.parse(stdin.readLineSync()!);
@@ -39,14 +46,16 @@ void hitungFaktorial() {
     hasil *= i;
   }
   print("Faktorial dari $n = $hasil");
+  history.add("Faktorial dari $n = $hasil"); // simpan ke history
 }
 
-//2. Cek Bilangan Prima (while + if-else)
+// 2. Cek Bilangan Prima (while + if-else)
 void cekPrima() {
   stdout.write("Masukkan angka: ");
   int n = int.parse(stdin.readLineSync()!);
   if (n < 2) {
     print("$n bukan bilangan prima");
+    history.add("$n bukan bilangan prima");
     return;
   }
   int i = 2;
@@ -60,8 +69,10 @@ void cekPrima() {
   }
   if (prima) {
     print("$n adalah bilangan prima");
+    history.add("$n adalah bilangan prima");
   } else {
     print("$n bukan bilangan prima");
+    history.add("$n bukan bilangan prima");
   }
 }
 
@@ -79,6 +90,7 @@ void gameTebakAngka() {
     tebakan = int.parse(stdin.readLineSync()!);
     if (tebakan == angkaRahasia) {
       print("Selamat! Tebakan benar.");
+      history.add("Game: Tebakan benar ($tebakan)"); // simpan hasil
       return;
     } else {
       print("Salah! Coba lagi.");
@@ -87,4 +99,17 @@ void gameTebakAngka() {
   } while (kesempatan > 0);
 
   print("Kesempatan habis. Angka rahasia adalah $angkaRahasia.");
+  history.add("Game: Gagal menebak, angka rahasia = $angkaRahasia");
+}
+
+// 4. Tampilkan History (for-in)
+void tampilkanHistory() {
+  if (history.isEmpty) {
+    print("Belum ada riwayat.");
+    return;
+  }
+  print("\n=== HISTORY PROGRAM ===");
+  for (var h in history) {
+    print(h);
+  }
 }
