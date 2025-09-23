@@ -40,3 +40,27 @@ void hitungFaktorial() {
   }
   print("Faktorial dari $n = $hasil");
 }
+
+//2. Cek Bilangan Prima (while + if-else)
+void cekPrima() {
+  stdout.write("Masukkan angka: ");
+  int n = int.parse(stdin.readLineSync()!);
+  if (n < 2) {
+    print("$n bukan bilangan prima");
+    return;
+  }
+  int i = 2;
+  bool prima = true;
+  while (i <= n ~/ 2) {
+    if (n % i == 0) {
+      prima = false;
+      break;
+    }
+    i++;
+  }
+  if (prima) {
+    print("$n adalah bilangan prima");
+  } else {
+    print("$n bukan bilangan prima");
+  }
+}
